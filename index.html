@@ -13,29 +13,13 @@
     </div>
     
     <div id="form" class="simple small">
-      <!--<img src="img/banner0.png" width="200px" Height="50px"/>
-      <br/>-->
       
       <ul class="tab">
         <li><a href="#" id="defaultOpen" class="tablinks" onclick="changeTab(event, 'Search')">Fazer Sucesso!</a></li>
-        <li><a href="#" class="tablinks" onclick="changeTab(event, 'New')">Cadastrar Frases</a></li>
-        <li><a href="#" class="tablinks" onclick="changeTab(event, 'Database')">Acervo</a></li>
+        <li><a href="#" title="Eu perdi o jogo." class="tablinks" onclick="changeTab(event, 'Rules')">Regras do Jogo</a></li>
+        <li><a href="#" class="tablinks" onclick="changeTab(event, 'New')">Sugerir</a></li>
+        <li><a href="#" class="tablinks" onclick="changeTab(event, 'Donate')">Doar</a></li>
       </ul>
-
-      <div id="New" class="tabcontent">
-        <form >
-          <fieldset style="border:none">
-            <input type="text" placeholder="Mensagem" name="message" id="message" class="text ui-widget-content ui-corner-all">
-            <br/>
-            <button type="button" class="button" name="submit" id="submit" value="Submit" onclick="createMessage()">Cadastrar Mensagem</button>
-          </fieldset>
-          <fieldset style="border:none">
-            <input type="text" placeholder="Destinatario" name="name" id="name" class="text ui-widget-content ui-corner-all">
-            <br/>
-            <button type="button" class="button" name="submit" id="submit" value="Submit" onclick="createRecipient()">Cadastrar Destinatario</button>
-          </fieldset>
-        </form>
-      </div>
 
       <div id="Search" class="tabcontent">
         <form >
@@ -45,13 +29,13 @@
                 Voce deve mandar a mensagem a seguir
               </div>
               <div class="responseField" id="responseMessage">
-                --------------------------
+                ---clique-no-botao-abaixo---
               </div>
               <div class="responseTitle">
                 Para
               </div>
               <div class="responseField" id="responseRecipient">
-                --------------------------
+                ---clique-no-botao-abaixo---
               </div>
             </div>
             <button type="button" class="imageButton" name="submit" id="submit" value="Submit" onclick="getHelp()"><img src="img/tinderIcon.png" class="buttonImage" /></button>
@@ -60,30 +44,50 @@
         </form>
       </div>
       
-      <div id="Database" class="tabcontent">
+      <div id="Rules" class="tabcontent">
         <form >
           <fieldset style="border:none">
-            <div class="responseDiv">
-              <div class="responseTitle">
-                Mensagens
-              </div>
-              <div class="responseField" id="dbMessages">
-                --------------------------
-              </div>
-              <div class="responseTitle">
-                Destinatarios
-              </div>
-              <div class="responseField" id="dbRecipients">
-                --------------------------
-              </div>
+            <div class="rules">
+	      <br>
+	      <ul style="list-style-type:disc">
+ 	        <li>Sua opiniao nao conta, somente a dos seus amigos;</li>
+	        <li>Nao mandar mensagem resulta em pagar cerveja;</li>
+	        <li>O jogo nao pode ser mencionado para o match;</li>
+	      </ul>	
             </div>
-            <button type="button" class="imageButton" name="submit" id="submit" value="Submit" onclick="getAllFromDb()"><img src="img/tinderIcon.png" class="buttonImage" /></button>
             <br/>
           </fieldset>
         </form>
       </div>
 
+      <div id="New" class="tabcontent">
+	<br>
+	Voce pode sugerir novas mensagens e destinatarios! <br> Escolheremos as melhores e elas tambem serao sorteadas! <br>
+        <form >
+          <fieldset style="border:none">
+            <input type="text" placeholder="Mensagem" name="message" id="message" class="text ui-widget-content ui-corner-all">
+            <br/>
+            <button type="button" class="button" name="submit" id="submit" value="Submit" onclick="suggestMessage()">Sugerir Mensagem</button>
+          </fieldset>
+          <fieldset style="border:none">
+            <input type="text" placeholder="Destinatario" name="name" id="name" class="text ui-widget-content ui-corner-all">
+            <br/>
+            <button type="button" class="button" name="submit" id="submit" value="Submit" onclick="suggestRecipient()">Sugerir Destinatario</button>
+          </fieldset>
+        </form>
+      </div>
+
+      <div id="Donate" class="tabcontent">
+        <br>
+        Eai, te ajudei a sair com aquele match perfeito? <br>
+        Que tal me ajudar a bancar meu proximo encontro? :D<br>
+        <br><br>
+        <a href="https://pag.ae/bkkt5mH"><img src="https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/120x53-doar-roxo.gif"/></a>
+        <br><br>
+      </div>
+
+
     </div>
-    
+
   </body>
 </html>

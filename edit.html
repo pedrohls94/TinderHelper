@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tinder Helper</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  </head>
+  <body background="img/bg.png">
+    <script src="js/index.js" type="text/javascript"></script>
+
+    <div class="title">
+      Tinder Helper
+    </div>
+    
+    <div id="form" class="simple small">
+      
+      <ul class="tab">
+        <li><a href="#" id="defaultOpen" class="tablinks" onclick="changeTab(event, 'New')">Cadastrar Frases</a></li>
+        <li><a href="#" class="tablinks" onclick="changeTab(event, 'Database')">Acervo</a></li>
+        <li><a href="#" class="tablinks" onclick="changeTab(event, 'Suggestions')">Sugestoes</a></li>
+      </ul>
+
+      <div id="New" class="tabcontent">
+        <form >
+          <fieldset style="border:none">
+            <input type="text" placeholder="Mensagem" name="message" id="message" class="text ui-widget-content ui-corner-all">
+            <br/>
+            <button type="button" class="button" name="submit" id="submit" value="Submit" onclick="createMessage()">Cadastrar Mensagem</button>
+          </fieldset>
+          <fieldset style="border:none">
+            <input type="text" placeholder="Destinatario" name="name" id="name" class="text ui-widget-content ui-corner-all">
+            <br/>
+            <button type="button" class="button" name="submit" id="submit" value="Submit" onclick="createRecipient()">Cadastrar Destinatario</button>
+          </fieldset>
+        </form>
+      </div>
+
+      <div id="Database" class="tabcontent">
+        <form >
+          <fieldset style="border:none">
+            <div class="responseDiv">
+              <div class="responseTitle">
+                Mensagens
+              </div>
+              <div class="responseField" id="dbMessages">
+                --------------------------
+              </div>
+              <div class="responseTitle">
+                Destinatarios
+              </div>
+              <div class="responseField" id="dbRecipients">
+                --------------------------
+              </div>
+            </div>
+            <button type="button" class="imageButton" name="submit" id="submit" value="Submit" onclick="getAllFromDb()"><img src="img/tinderIcon.png" class="buttonImage" /></button>
+            <br/>
+          </fieldset>
+        </form>
+      </div>
+
+      <div id="Suggestions" class="tabcontent">
+        <form >
+          <fieldset style="border:none">
+            <div class="responseDiv">
+              <div class="responseTitle">
+                Mensagens
+              </div>
+              <div class="responseField" id="dbSuggestionMessages">
+                --------------------------
+              </div>
+              <div class="responseTitle">
+                Destinatarios
+              </div>
+              <div class="responseField" id="dbSuggestionRecipients">
+                --------------------------
+              </div>
+            </div>
+            <button type="button" class="imageButton" name="submit" id="submit" value="Submit" onclick="getAllSuggestionsFromDb()"><img src="img/tinderIcon.png" class="buttonImage" /></button>
+            <br/>
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+    
+  </body>
+</html>
