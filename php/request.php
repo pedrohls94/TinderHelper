@@ -31,6 +31,19 @@ else if ($_GET['action'] == 'getAllSuggestionRecipients') {
 else if ($_GET['action'] == 'getAllSuggestionMessages') {
   echo json_encode($db->getAllSuggestionMessages());
 }
+else if ($_GET['action'] == 'deleteSuggestedMessage') {
+  $db->deleteMessageSuggestion($_GET['id']);
+}
+else if ($_GET['action'] == 'deleteSuggestedRecipient') {
+  $db->deleteRecipientSuggestion($_GET['id']);
+}
+else if ($_GET['action'] == 'getOneMessageSuggestion') {
+  echo json_encode($db->getOneMessageSuggestion());
+}
+else if ($_GET['action'] == 'getOneRecipientSuggestion') {
+  echo json_encode($db->getOneRecipientSuggestion());
+}
+
 ?>
 
 

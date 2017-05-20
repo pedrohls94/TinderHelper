@@ -85,6 +85,29 @@ input.text {
   border-style:inset;
 }
 
+.tinderButton {
+  cursor:pointer;
+  background: #fff;
+  opacity:1;
+  transition:0.3s;
+  border-width:4px;
+  border-style:solid;
+  border-color:#aaa;
+  width:70px;
+  height:70px;
+  border-radius:5em;
+}
+
+.tinderImage {
+  width:50px;
+  height:50px;
+  transition:0.3s;
+}
+
+.tinderButton:hover {
+  border-style:double;
+}
+
 .button {
   cursor:pointer;
   height: 2.25em;

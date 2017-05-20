@@ -47,6 +47,38 @@ class DatabaseController {
                 $this->processQuery($sql);
         }
 
+	function deleteMessageSuggestion($id) {
+		$sql = 'DELETE FROM' . ' '.self::TABLE_MESSAGE_SUGGESTION.' ';
+                $sql .= 'WHERE ' . self::MESSAGE_COL_ID . '='. $id .';';
+                $this->processQuery($sql);
+	}
+
+	function deleteRecipientSuggestion($id) {
+                $sql = 'DELETE FROM' . ' '.self::TABLE_RECIPIENT_SUGGESTION.' ';
+                $sql .= 'WHERE ' . self::RECIPIENT_COL_ID . '='. $id .';';
+                $this->processQuery($sql);
+        }
+
+	function getOneMessageSuggestion() {
+		$sql = 'SELECT * FROM' . ' '.self::TABLE_MESSAGE_SUGGESTION.';';
+                $rows = $this->processQuery($sql);
+        	if ($rows->num_rows > 0) {
+                	return $rows->fetch_assoc();
+        	} else {
+			return false;
+		}
+	}
+
+        function getOneRecipientSuggestion() {
+                $sql = 'SELECT * FROM' . ' '.self::TABLE_RECIPIENT_SUGGESTION.';';
+                $rows = $this->processQuery($sql);
+                if ($rows->num_rows > 0) {
+                        return $rows->fetch_assoc();
+                } else {
+                        return false;
+                }
+        }
+
 	function getAllRecipients() {
                 $sql = 'SELECT * FROM' . ' '.self::TABLE_RECIPIENT.';';
                 $result = $this->processQuery($sql);
@@ -97,11 +129,12 @@ class DatabaseController {
         if ($rows->num_rows > 0) {
 	    	while($row = $rows->fetch_assoc()) {
     			$objects[] = $row[$name];
-			}
 		}
+	}
 		return $objects;
     }
     
+
     function processQuery($sql) {
         $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);
         if ($conn->connect_error) {

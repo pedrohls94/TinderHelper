@@ -42,6 +42,11 @@ function getHelp() {
     });
 }
 
+var messageSuggestionId = 0;
+var recipientSuggestionId = 0;
+var suggestedRecipient = 0;
+var suggestedMessage = 0;
+
 function getAllFromDb() {
     $.get("/php/request.php?action=getAllMessages", function(data, status){
         if(JSON.parse(data) == null) {
@@ -69,34 +74,64 @@ function getAllFromDb() {
     });
 }
 
-function getAllSuggestionsFromDb() {
-    $.get("/php/request.php?action=getAllSuggestionMessages", function(data, status){
-        if(JSON.parse(data) == null) {
-            alert("That's not your lucky day, try again later.");
+function getMessageSuggestionFromDb() {
+    $.get("/php/request.php?action=getOneMessageSuggestion", function(data, status){
+        if(JSON.parse(data) == null || JSON.parse(data) == false) {
+	    messageSuggestionId = 0;
+            suggestedMessage = '';
+            document.getElementById('dbSuggestionRecipients').innerHTML = 'Nenhuma sugestao';
         } else {
             var dbData = JSON.parse(data);
-            var string = "";
-            for(key in dbData) {
-                string += dbData[key] + "<br><br>";
-            }
-            document.getElementById('dbSuggestionMessages').innerHTML = string;
-        }
-    });
-    $.get("/php/request.php?action=getAllSuggestionRecipients", function(data, status){
-        if(JSON.parse(data) == null) {
-            alert("That's not your lucky day, try again later.");
-        } else {
-            var dbData = JSON.parse(data);
-            var string = "";
-            for(key in dbData) {
-                string += dbData[key] + "<br><br>";
-            }
-            document.getElementById('dbSuggestionRecipients').innerHTML = string;
+	    messageSuggestionId = dbData['Id'];
+	    suggestedMessage = dbData['Message'];
+            document.getElementById('dbSuggestionMessages').innerHTML = dbData['Message'];
         }
     });
 }
 
+function getRecipientSuggestionFromDb() {
+    $.get("/php/request.php?action=getOneRecipientSuggestion", function(data, status){
+        if(JSON.parse(data) == null || JSON.parse(data) == false) {
+            recipientSuggestionId = 0;
+            suggestedRecipient = '';
+            document.getElementById('dbSuggestionRecipients').innerHTML = 'Nenhuma sugestao';
+        } else {
+            var dbData = JSON.parse(data);
+            recipientSuggestionId = dbData['Id'];
+	    suggestedRecipient = dbData['Description'];
+            document.getElementById('dbSuggestionRecipients').innerHTML = dbData['Description'];
+        }
+    });
+}
+
+function judgeMessageSuggestion(keep) {
+    if(keep) {
+        $.get('/php/request.php?action=createMessage&message="' + suggestedMessage + '"', function(data, status){
+	    //Do nothing
+        });
+    }
+    $.get('/php/request.php?action=deleteSuggestedMessage&id="' + messageSuggestionId + '"', function(data, status){
+        getMessageSuggestionFromDb();
+    });
+}
+
+function judgeRecipientSuggestion(keep) {
+    if(keep) {
+        $.get('/php/request.php?action=createRecipient&recipient="' + suggestedRecipient + '"', function(data, status){
+            //Do nothing
+        });
+    }
+    $.get('/php/request.php?action=deleteSuggestedRecipient&id="' + recipientSuggestionId + '"', function(data, status){
+        getRecipientSuggestionFromDb();
+    });
+}
+
 function changeTab(evt, tabName) {
+    if(tabName == 'Suggestions') {
+	getMessageSuggestionFromDb();
+        getRecipientSuggestionFromDb();
+    }
+
     var i, tabcontent, tablinks;
 
     tabcontent = document.getElementsByClassName("tabcontent");

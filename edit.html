@@ -68,14 +68,22 @@
               <div class="responseField" id="dbSuggestionMessages">
                 --------------------------
               </div>
+	      <div class=judgeButtons">
+		<button type="button" class="tinderButton" name="submit" id="submit" value="Submit" onclick="judgeMessageSuggestion(false)"><img src="img/nope.png" class="tinderImage"/></button>
+		<button type="button" class="tinderButton" name="submit" id="submit" value="Submit" onclick="judgeMessageSuggestion(true)"><img src="img/like.png" class="tinderImage"/></button>
+              </div>
+	      <br><br>
               <div class="responseTitle">
                 Destinatarios
               </div>
               <div class="responseField" id="dbSuggestionRecipients">
                 --------------------------
               </div>
+              <div class=judgeButtons">
+                <button type="button" class="tinderButton" name="submit" id="submit" value="Submit" onclick="judgeRecipientSuggestion(false)"><img src="img/nope.png" class="tinderImage"/></button>
+                <button type="button" class="tinderButton" name="submit" id="submit" value="Submit" onclick="judgeRecipientSuggestion(true)"><img src="img/like.png" class="tinderImage"/></button>
+              </div>
             </div>
-            <button type="button" class="imageButton" name="submit" id="submit" value="Submit" onclick="getAllSuggestionsFromDb()"><img src="img/tinderIcon.png" class="buttonImage" /></button>
             <br/>
           </fieldset>
         </form>
